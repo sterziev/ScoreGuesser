@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"></th:block>
+<div class="container">
+    <!--/*@thymesVar id="user" type="ex.guesser.areas.user.models.binding.UpdateUserPersonalBindingModel"*/-->
+    <br/>
+    <br/>
+
+    <div class="container col-sm center-block">
+        <h3 class="text-center">Account Settings</h3>
+        <br/>
+        <div class="row">
+            <div class="list-group col-sm-4">
+                <a href="/user/myProfile" class="side-bar-singleCol list-group-item ">General
+                </a>
+                <a href="/user/editPersonalInfo" class="side-bar-singleCol list-group-item active-cell">Change Info
+                </a>
+                <a href="/user/editPassword" class="side-bar-singleCol list-group-item">Change Password
+                </a>
+                <a href="/standing" class="side-bar-singleCol list-group-item">Delete Profile
+                </a>
+            </div>
+
+            <div class="tab-pane col-sm-8 center-block" id="editPersonalInfo">
+                <form th:object="${user}" th:action="@{'/user/editPersonalInfo'}" th:method="POST">
+                    <div class="form-group">
+                        <h5>Edit Personal Info</h5>
+                        <th:block th:replace="fragments/user/userFormPersonalInfo1"></th:block>
+
+                        <th:block th:replace="fragments/user/userFormPersonalInfo2"></th:block>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

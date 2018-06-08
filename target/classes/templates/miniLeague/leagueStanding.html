@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head :: meta"></th:block>
+    <th:block th:replace="fragments/head :: style"></th:block>
+    <th:block th:replace="fragments/head :: script"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"></th:block>
+
+<div class="container">
+
+    <div class="container col-sm center-block">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>Overall Standing</h1>
+                <th:block th:replace="fragments/league/scoreBoardFrag"></th:block>
+            </div>
+            <th:block th:replace="fragments/rightSideBar"></th:block>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments/footer"></th:block>
+</body>
+</html>

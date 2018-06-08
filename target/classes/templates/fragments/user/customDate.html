@@ -1,0 +1,46 @@
+<th:block th:fregment="customDate">
+    <div class="row">
+        <div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('day')} ? 'has-danger'">
+            <label for="day">Day</label>
+            <select id="day" class="form-control" name="day">
+                <th:block th:each="days : ${date.getDays()}">
+                    <option th:text="${days}" th:value="${days}"
+                            th:selected="${#strings.equals(user.day, #strings.toString(days))}"></option>
+                </th:block>
+            </select>
+            <th:block th:if="${#fields.errors('day').size()>0}">
+                <div>
+                    <small style="color: tomato" th:text="${#fields.errors('day').get(0)}"></small>
+                </div>
+            </th:block>
+        </div>
+        <div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('month')} ? 'has-danger'">
+            <label for="month">Month</label>
+            <select id="month" class="form-control" name="month">
+                <th:block th:each="months,iter : ${date.getMonths()}">
+                    <option th:text="${months}" th:value="${iter.index}"
+                            th:selected="${#strings.equals(user.month, #strings.toString(iter.index))}"></option>
+                </th:block>
+            </select>
+            <th:block th:if="${#fields.errors('month').size()>0}">
+                <div>
+                    <small style="color: tomato" th:text="${#fields.errors('month').get(0)}"></small>
+                </div>
+            </th:block>
+        </div>
+        <div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('year')} ? 'has-danger'">
+            <label for="year">Year</label>
+            <select id="year" class="form-control" name="year">
+                <th:block th:each="y : ${date.getYears()}">
+                    <option th:text="${y}" th:value="${y}"
+                            th:selected="${#strings.equals(user.year, #strings.toString(y))}"></option>
+                </th:block>
+            </select>
+            <th:block th:if="${#fields.errors('year').size()>0}">
+                <div>
+                    <small style="color: tomato" th:text="${#fields.errors('year').get(0)}"></small>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</th:block>

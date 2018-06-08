@@ -1,0 +1,33 @@
+<th:block th:fregment="personal-info1">
+    <label>Birthday</label>
+    <th:block th:replace="fragments/user/customDate"></th:block>
+    <fieldset class="form-group col-sm-12" th:classappend="${#fields.hasErrors('sex')} ? 'has-danger'">
+        <div class="row">
+            <label class="form-check-label col-sm-4">
+                <input type="radio" class="form-check-input" name="sex" id="female" value="FEMALE"
+                       th:checked="*{sex == 'FEMALE'}"/>
+                Female
+            </label>
+            <label class="form-check-label col-sm-4">
+                <input type="radio" class="form-check-input" name="sex" id="male" value="MALE"
+                       th:checked="*{sex == 'MALE'}"/>
+                Male
+            </label>
+        </div>
+        <th:block th:if="${#fields.errors('sex').size()>0}" >
+            <div>
+                <small style="color: tomato" th:text="${#fields.errors('sex').get(0)}"></small>
+            </div>
+        </th:block>
+    </fieldset>
+    <div class="form-group" th:classappend="${#fields.hasErrors('favTeam')} ? 'has-danger'">
+        <label for="favTeam">Favorite Team</label>
+        <input type="text" name="favTeam" class="form-control" id="favTeam" th:field="*{favTeam}"/>
+        <th:block th:if="${#fields.errors('favTeam').size()>0}" >
+            <div>
+                <small style="color: tomato" th:text="${#fields.errors('favTeam').get(0)}"></small>
+            </div>
+        </th:block>
+    </div>
+
+</th:block>

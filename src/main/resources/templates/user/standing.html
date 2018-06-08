@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head :: meta"></th:block>
+    <th:block th:replace="fragments/head :: style"></th:block>
+    <th:block th:replace="fragments/head :: script"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"></th:block>
+<div class="container">
+    <!--/*@thymesVar id="currentLeague" type="ex.guesser.areas.user.models.dtos.MiniLeagueDto"*/-->
+    <div class="container col-sm center-block">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1 th:text="${#strings.defaultString(currentLeague.leagueName,'Overall Standing')}">Overall Standing</h1>
+                <th:block th:replace="fragments/league/scoreBoardFrag"></th:block>
+            </div>
+
+            <div class="card border col-sm" style="max-width: 20rem;" th:object="${container}">
+                <th:block th:replace="fragments/rightSideBar"></th:block>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments/footer"></th:block>
+</body>
+</html>

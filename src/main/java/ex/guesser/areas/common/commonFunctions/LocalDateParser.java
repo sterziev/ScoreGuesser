@@ -1,0 +1,14 @@
+package ex.guesser.areas.common.commonFunctions;
+
+import java.time.LocalDateTime;
+
+public final class LocalDateParser {
+    public static LocalDateTime localDateTimeParser(String year, String month, String day, String hour, String min){
+        return LocalDateTime.of(
+                Integer.parseInt(year),
+                Integer.parseInt(month),
+                Integer.parseInt(day)
+                , Integer.parseInt(hour),
+                Integer.parseInt(min));
+    }
+}

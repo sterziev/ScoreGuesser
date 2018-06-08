@@ -1,0 +1,33 @@
+<th:block th:fregment="personal-info1">
+    <div class="row">
+        <div class="form-group col-sm-6" th:classappend="${#fields.hasErrors('firstName')} ? 'has-danger'">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" class="form-control input-group-lg reg_name" id="firstName"
+                   th:field="*{firstName}"/>
+            <th:block th:if="${#fields.errors('firstName').size()>0}" >
+                <div>
+                    <small style="color: tomato" th:text="${#fields.errors('firstName').get(0)}"></small>
+                </div>
+            </th:block>
+        </div>
+        <div class="form-group col-sm-6" th:classappend="${#fields.hasErrors('lastName')} ? 'has-danger'">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" class="form-control input-group-lg reg_name" id="lastName"
+                   th:field="*{lastName}"/>
+            <th:block th:if="${#fields.errors('lastName').size()>0}" >
+                <div>
+                    <small style="color: tomato" th:text="${#fields.errors('lastName').get(0)}"></small>
+                </div>
+            </th:block>
+        </div>
+    </div>
+    <div class="form-group" th:classappend="${#fields.hasErrors('country')} ? 'has-danger'">
+        <label for="country">Country</label>
+        <input type="text" name="country" class="form-control" id="country" th:field="*{country}"/>
+        <th:block th:if="${#fields.errors('country').size()>0}" >
+            <div>
+                <small style="color: tomato" th:text="${#fields.errors('country').get(0)}"></small>
+            </div>
+        </th:block>
+    </div>
+</th:block>

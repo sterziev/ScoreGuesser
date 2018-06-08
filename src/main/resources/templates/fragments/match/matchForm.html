@@ -1,0 +1,110 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--/*@thymesVar id="matches" type="ex.guesser.areas.matches.models.binding.MatchDisplayContainer"*/-->
+<th:block th:fregment="matchForm" th:object="${matches}">
+
+
+    <th:block th:each="r,iter: *{rounds}">
+        <div th:each="match,stat: ${matches.getMatchesByRound(r)}">
+            <div th:styleappend="${matches.getCurrentRound()==match.getRound()}? 'display: ;':'display: none;'"
+                 th:id="${'round'+match.getRound() + '-'+ stat.index}">
+                <div class="row no-margin">
+                    <div class="col-12 header header-height r-top-25"
+                         th:text="${#temporals.format(match.getKickOff(),'HH:mm dd MMMM')}">
+                        11.11.2018 14:30
+                    </div>
+                </div>
+                <div class="row no-margin bg-match " th:with="matchIndex=${matches.getMatchIdInList(match.id)}">
+                    <div class="col-4 no-padding">
+                        <div class="col text" th:text="${match.getHome().getName()}">
+                            Team A
+                        </div>
+                        <div class="col text">
+                            <img th:src="@{'/img/teamFlags/national/shwitzerland.png'}" class="img">
+                        </div>
+                    </div>
+
+                    <div class="col-4 text align-self-center">
+                        <th:block th:if="${match.status.equalsIgnoreCase('current')}">
+                            <input type="number" min="0" max="20" name="homeGoals"
+                                   class="goals-input margins flex"
+                                   id="homeGoals" th:field="*{model[__${matchIndex}__].predictedGalsHome}"/>
+                        </th:block>
+                        <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
+                            <th:block th:if="${match.getPredictedGalsHome()==null}">
+                                    -
+                            </th:block>
+                            <th:block th:unless="${match.getPredictedGalsHome()==null}">
+                                <th:block th:text="${match.getPredictedGalsHome()}">
+                                    2
+                                </th:block>
+                            </th:block>
+                        </div>
+                        <div class="col-2 flex no-padding">
+                            vs
+                        </div>
+                        <th:block th:if="${match.status.equalsIgnoreCase('current')}">
+                            <input type="number" min="0" max="20" name="awayGoals"
+                                   class="goals-input margins flex"
+                                   id="awayGoals" th:field="*{model[__${matchIndex}__].predictedGoalsAway}"/>
+                        </th:block>
+                        <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
+                            <th:block th:if="${match.getPredictedGalsHome()==null}">
+                                    -
+                            </th:block>
+                            <th:block th:unless="${match.getPredictedGoalsAway()==null}">
+                                <th:block th:text="${match.getPredictedGoalsAway()}">
+                                    2
+                                </th:block>
+                            </th:block>
+                        </div>
+                    </div>
+
+                    <div class="col-4 no-padding">
+                        <div class="col text" th:text="${match.getAway().getName()}">
+                            Team B
+                        </div>
+                        <div class="col text">
+                            <img th:src="@{'/img/teamFlags/national/shwitzerland.png'}" class="img">
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" class="form-control input-sm" id="id"
+                           th:field="*{model[__${matchIndex}__].id}"/>
+                </div>
+
+                <div class="row bg-match no-margin r-bottom-25">
+                    <div class="col text">
+                        <div class="row row-height no-margin">
+                            <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
+                                <div class="col small-text zero-padding">result:</div>
+                                <div class="col text-left zero-padding"
+                                     th:text="${match.getGoalsHome() + '-' + match.getGoalsAway()}">-
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="col-4 text">
+                        <div class="row no-margin">
+                            <div class="col-6" align="center">
+                                <input type="checkbox" class="input_class_checkbox">
+                            </div>
+                            <div class="col-6">
+                                <input type="checkbox" class="input_class_checkbox">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 text" th:text="${match.getPoint()}">
+                        0
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+        <div th:id="${'round'+r + '-'+ 'points'}"
+             th:styleappend="${matches.getCurrentRound()==r}? 'display: ;':'display: none;'"
+             sec:authorize="isAuthenticated()">
+            <h4 th:text="'Round ' + ${r} + ' points: ' +${matches.getPointsPerRound().get(r)}"></h4>
+        </div>
+
+    </th:block>
+</th:block>

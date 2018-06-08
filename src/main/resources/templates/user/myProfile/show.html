@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"></th:block>
+<div class="container">
+
+    <!--/*@thymesVar id="user" type="ex.guesser.areas.user.models.binding.UpdateUserPersonalBindingModel"*/-->
+    <br/>
+    <br/>
+
+    <div class="container col-sm center-block">
+        <h3 class="text-center">Account Settings</h3>
+        <br/>
+        <div class="row">
+            <div class="list-group col-sm-4">
+                <a href="/user/myProfile" class="side-bar-singleCol list-group-item active-cell">General
+                </a>
+                <a href="/user/editPersonalInfo" class="side-bar-singleCol list-group-item">Change Info
+                </a>
+                <a href="/user/editPassword" class="side-bar-singleCol list-group-item">Change Password
+                </a>
+                <a href="/standing" class="side-bar-singleCol list-group-item">Delete Profile
+                </a>
+            </div>
+            <div class="col-sm-7">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th scope="row">First Name</th>
+                        <td>Mark</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Last Name</th>
+                        <td>Jacob</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Username</th>
+                        <td>Larrysadasdasdadasd</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Country</th>
+                        <td>Bulgaria</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Birthday</th>
+                        <td>12.12.1201</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sex</th>
+                        <td>Male</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Favorite Team</th>
+                        <td>CSKA</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+</body>
+</html>

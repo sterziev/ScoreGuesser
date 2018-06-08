@@ -1,0 +1,86 @@
+package ex.guesser.areas.user.services;
+
+import ex.guesser.areas.errorHandling.errors.AlreadyInLeagueException;
+import ex.guesser.areas.errorHandling.errors.LeagueNotFound;
+import ex.guesser.areas.errorHandling.errors.NotAuthorizedToCreateLeagueException;
+import ex.guesser.areas.user.entities.MiniLeague;
+import ex.guesser.areas.user.entities.User;
+import ex.guesser.areas.user.models.binding.JoinMiniLeagueBM;
+import ex.guesser.areas.user.models.binding.MiniLeagueBM;
+import ex.guesser.areas.user.models.dtos.MiniLeagueDto;
+import ex.guesser.areas.user.repositories.MiniLeagueRepository;
+import ex.guesser.areas.user.repositories.UserRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+
+@Service
+public class MiniLeagueServiceImpl implements MiniLeagueService {
+    private final MiniLeagueRepository miniLeagueRepository;
+    private final UserRepository userRepository;
+    private final ModelMapper mapper;
+
+    public MiniLeagueServiceImpl(MiniLeagueRepository miniLeagueRepository, UserRepository userRepository, ModelMapper mapper) {
+        this.miniLeagueRepository = miniLeagueRepository;
+        this.userRepository = userRepository;
+        this.mapper = mapper;
+    }
+
+    @Override
+    public void create(MiniLeagueBM miniLeagueBM, Authentication authentication) {
+        if (authentication == null){
+            throw new NotAuthorizedToCreateLeagueException();
+        }
+
+        User user = (User)authentication.getPrincipal();
+        MiniLeague miniLeague = this.mapper.map(miniLeagueBM, MiniLeague.class);
+        miniLeague.getAdmins().add(user);
+        miniLeague.setCreator(user);
+        miniLeague.getParticipants().add(user);
+        String leagueKey = this.createLegueKey(miniLeague.getLeagueName());
+        miniLeague.setKeyCode(leagueKey);
+
+        this.miniLeagueRepository.save(miniLeague);
+    }
+
+    @Override
+    public MiniLeague join(JoinMiniLeagueBM miniLeagueBM, Authentication authentication) {
+        if (authentication == null){
+            throw new NotAuthorizedToCreateLeagueException();
+        }
+        User user = (User)authentication.getPrincipal();
+
+        MiniLeague miniLeague = this.miniLeagueRepository.findByKeyCode(miniLeagueBM.getLeagueName());
+        if (miniLeague==null){
+            throw new LeagueNotFound();
+        }
+
+        Set<String> participants = miniLeague.getParticipants().stream().map(User::getUsername).collect(Collectors.toSet());
+        if (participants.contains(user.getUsername())){
+            throw new AlreadyInLeagueException();
+        }
+
+        miniLeague.addParticipant(user);
+        this.miniLeagueRepository.save(miniLeague);
+
+        return miniLeague;
+
+    }
+
+    @Override
+    public MiniLeagueDto findById(String id) {
+
+        MiniLeague miniLeague = this.miniLeagueRepository.findById(id).orElse(null);
+        return this.mapper.map(miniLeague,MiniLeagueDto.class);
+    }
+
+    private String createLegueKey(String leagueName) {
+        int randomNum = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
+
+        return leagueName + randomNum;
+    }
+}

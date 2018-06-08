@@ -1,0 +1,80 @@
+
+<th:block th:fregment="matchForm" th:object="${matches}">
+
+
+    <th:block th:each="r: *{rounds}">
+        <div th:each="match,stat: ${matches.getMatchesByRound(r)}">
+            <div th:styleappend="${matches.getCurrentRound()==match.getRound()}? 'display: ;':'display: none;'" th:id="${'round'+match.getRound() + '-'+ stat.index}">
+                <div class="row no-margin">
+                    <div class="col-sm-12 header header-height" th:text="${match.getKickOff()}">
+                        11.11.2018 14:30
+                    </div>
+                </div>
+                <div class="row row-height no-margin">
+                    <div class="col-sm text" th:text="${match.getHome().getName()}">
+                        Team A
+                    </div>
+                        <th:block th:if="${match.getPredictedGalsHome()==null}">
+                            <div class="col-sm-1 text">
+                                -
+                            </div>
+                        </th:block>
+                        <th:block th:unless="${match.getPredictedGalsHome()==null}">
+                            <div class="col-sm-1 text" th:text="${match.getPredictedGalsHome()}">
+                                2
+                            </div>
+                        </th:block>
+                    <div class="col-sm-1 text">
+                        vs
+                    </div>
+                        <th:block th:if="${match.getPredictedGalsHome()==null}">
+                            <div class="col-sm-1 text">
+                                -
+                            </div>
+                        </th:block>
+                        <th:block th:unless="${match.getPredictedGoalsAway()==null}">
+                            <div class="col-sm-1 text" th:text="${match.getPredictedGoalsAway()}">
+                                2
+                            </div>
+                        </th:block>
+                    <div class="col-sm text" th:text="${match.getAway().getName()}">
+                        Team B
+                    </div>
+                </div>
+
+                <div class="row row-height no-margin">
+                    <div class="col-sm text">
+                        <div class="row row-height no-margin">
+                            <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
+                                <div class="col-sm small-text zero-padding">result:</div>
+                                <div class="col-sm text-left zero-padding"
+                                     th:text="${match.getGoalsHome() + '-' + match.getGoalsAway()}">-
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text">
+                        <div class="row no-margin">
+                            <div class="col-sm-6" align="center">
+                                <input type="checkbox" class="input_class_checkbox">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="checkbox" class="input_class_checkbox">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text" th:text="${match.getPoint()}">
+                        0
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+        <div th:id="${'round'+r + '-'+ 'points'}"
+             th:styleappend="${matches.getCurrentRound()==r}? 'display: ;':'display: none;'"
+             sec:authorize="isAuthenticated()">
+            <h4 th:text="'Round ' + ${r} + ' points: ' +${matches.getPointsPerRound().get(r)}"></h4>
+        </div>
+
+    </th:block>
+</th:block>

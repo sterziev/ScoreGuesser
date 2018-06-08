@@ -1,0 +1,11 @@
+<th:block th:fregment="personal-infoEmail">
+    <div class="form-group" th:classappend="${#fields.hasErrors('username')} ? 'has-danger'">
+        <label for="username">Email</label>
+        <input type="text" name="username" class="form-control" id="username" th:field="*{username}"/>
+        <th:block th:if="${#fields.errors('username').size()>0}" >
+            <div>
+                <small style="color: tomato" th:text="${#fields.errors('username').get(0)}"></small>
+            </div>
+        </th:block>
+    </div>
+</th:block>

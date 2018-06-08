@@ -1,0 +1,96 @@
+<th:block th:fregment="rightSideBar">
+    <div sec:authorize="isAnonymous()">
+        <div class="card-header">Score Guesser</div>
+        <div class="card-body">
+            <h5 class="card-title card-item">Welcome To Score Guesser</h5>
+            <div class="list-group card-item">
+                <a th:href="@{/login}" class="list-group-item list-group-item-action">Log In
+                </a>
+                <a href="/register" class="list-group-item list-group-item-action">Register
+                </a>
+                <a href="/miniLeague/create" class="list-group-item list-group-item-action">Create Mini
+                    League
+                </a>
+                <a href="/standing" class="list-group-item list-group-item-action">Standing
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <div class="card-body">
+            <h6 class="card-title card-item" th:text="*{firstName + ' ' + lastName}">Welcome To Score Guesser</h6>
+
+            <div class="card-header">Leagues</div>
+            <div class="card-body card-item">
+                <div class="list-group">
+                    <a class="side-bar-singleCol list-group-item" href="/standing">Overall</a>
+                    <th:block th:each="l : *{leagues}">
+                        <a class="side-bar-singleCol list-group-item" th:text="${l.leagueName}"
+                           th:href="@{'/standing/ml/' + ${l.getId()}}">My League</a>
+                    </th:block>
+                </div>
+            </div>
+            <br/>
+            <div class="card-item">
+                <a class="side-bar-singleCol custom-btn card-item" href="/miniLeague/create">Create Mini League</a>
+                <br/>
+                <a class="side-bar-singleCol custom-btn card-item" href="/miniLeague/join">Join in Mini League</a>
+            </div>
+            <br/>
+
+            <div class="card-header">Points</div>
+            <div class="card-body">
+                <div class="list-group card-item">
+                    <div class="list-group-item row side-bar-doubleCol">
+                        <div class="col-sm-8 padding">
+                            Overall
+                        </div>
+                        <div class="col-sm-4 padding" th:text="*{points}">
+                            2
+                        </div>
+                    </div>
+                    <div class="list-group-item row side-bar-doubleCol">
+                        <div class="col-sm-8 padding">
+                            Best Result
+                        </div>
+                        <div class="col-sm-4 padding"th:text="*{maxPoints}">
+                            2
+                        </div>
+                    </div>
+
+                    <div class="list-group-item row side-bar-doubleCol">
+                        <div class="col-sm-8 padding">
+                            Worsed Result
+                        </div>
+                        <div class="col-sm-4 padding"th:text="*{minPoints}">
+                            2
+                        </div>
+                    </div>
+
+
+                    <div class="list-group-item row side-bar-doubleCol">
+                        <div class="col-sm-8 padding">
+                            Average
+                        </div>
+                        <div class="col-sm-4 padding"th:text="*{getAveragePoints()}">
+                            2
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <th:block th:unless="${#strings.isEmpty(currentLeague.getKeyCode())}">
+                <br/>
+                <div class="card-header">Mini League Key</div>
+                <div class="card-body card-item">
+                    <div class="side-bar-singleCol list-group-item" th:text="${currentLeague.keyCode}">Key</div>
+                    <br/>
+                    <a class="side-bar-singleCol custom-btn red-btn" href="/miniLeague/leave">Leave Mini League</a>
+                </div>
+            </th:block>
+
+        </div>
+    </div>
+</th:block>

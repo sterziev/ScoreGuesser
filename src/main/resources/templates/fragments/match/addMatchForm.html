@@ -1,0 +1,54 @@
+<th:block th:fregment="add-Match">
+    <div class="form-group" th:classappend="${#fields.hasErrors('round')} ? 'has-danger'">
+        <label for="round">Round</label>
+        <input type="number" name="round" class="form-control" id="round" th:field="*{round}"/>
+        <th:block th:if="${#fields.errors('round').size()>0}">
+            <div>
+                <small style="color: tomato" th:text="${#fields.errors('round').get(0)}"></small>
+            </div>
+        </th:block>
+    </div>
+    <label for="home">Select Teams</label>
+
+    <div class="row">
+
+        <div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('home')} ? 'has-danger'">
+            <select class="selectpicker" data-live-search="true" id="home" name="home">
+                <th:block th:each="home : ${teams}">
+                    <option th:text="${home.getName()}" th:value="${home.getName()}"
+                            th:selected="${#strings.equals(match.home, #strings.toString(home))}"></option>
+                </th:block>
+            </select>
+            <th:block th:if="${#fields.errors('home').size()>0}">
+                <div>
+                    <small style="color: tomato" th:text="${#fields.errors('home').get(0)}"></small>
+                </div>
+            </th:block>
+        </div>
+        <label>vs</label>
+        <div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('home')} ? 'has-danger'">
+            <select class="selectpicker" data-live-search="true" id="away" name="away">
+                <th:block th:each="away : ${teams}">
+                    <option th:text="${away.getName()}" th:value="${away.getName()}"
+                            th:selected="${#strings.equals(match.away, #strings.toString(away))}"></option>
+                </th:block>
+            </select>
+            <th:block th:if="${#fields.errors('home').size()>0}">
+                <div>
+                    <small style="color: tomato" th:text="${#fields.errors('home').get(0)}"></small>
+                </div>
+            </th:block>
+        </div>
+    </div>
+    <th:block th:replace="fragments/match/customDateTime"></th:block>
+
+    <div class="form-group" th:classappend="${#fields.hasErrors('stadium')} ? 'has-danger'">
+        <label for="round">stadium</label>
+        <input type="text" name="stadium" class="form-control" id="stadium" th:field="*{stadium}"/>
+        <th:block th:if="${#fields.errors('stadium').size()>0}">
+            <div>
+                <small style="color: tomato" th:text="${#fields.errors('stadium').get(0)}"></small>
+            </div>
+        </th:block>
+    </div>
+</th:block>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head :: meta"></th:block>
+    <th:block th:replace="fragments/head :: style"></th:block>
+    <th:block th:replace="fragments/head :: script"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"></th:block>
+<div class="container">
+
+
+    <div class="container col-sm center-block">
+        <!--/*@thymesVar id="matches" type="ex.guesser.areas.matches.models.binding.MatchDisplayContainer"*/-->
+        <!--/*@thymesVar id="container" type="ex.guesser.areas.common.dtos.InfoContainer"*/-->
+        <div class="row">
+            <div class="col-sm-8" style="margin-right: 15px;" th:if="${matches.getModel().size()>0}">
+                <form th:object="${matches}" th:action="@{'/matches/persistPrediction'}" th:method="POST">
+                    <h2 class="text-center" th:text="'Round ' + ${matches.getCurrentRound()}" id="heading">Round 1</h2>
+                    <th:block th:if="${#fields.hasAnyErrors()}">
+                        <div th:each="error : ${#fields.globalErrors()}" class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <div th:text="${error}"></div>
+                            <br/>
+                        </div>
+                    </th:block>
+                    <select id="rounds" class="form-control col-sm-3" name="rounds">
+                        <th:block th:each="r : ${matches.getRounds()}">
+                            <option class="dropdown-item" th:text="${'Round ' + r}"
+                                    th:selected="${r==matches.getCurrentRound()}" th:value="${'round' + r}"></option>
+                        </th:block>
+                    </select>
+
+                    <div>
+                    <th:block th:replace="fragments/match/matchForm"></th:block>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btn-save">Save</button>
+                </form>
+            </div>
+
+            <div class="card border col-sm" style="max-width: 20rem;" th:object="${container}">
+                <th:block th:replace="fragments/rightSideBar"></th:block>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="fragments/footer"></th:block>
+
+</body>
+</html>

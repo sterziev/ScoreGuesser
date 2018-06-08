@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<!--/*@thymesVar id="user" type="ex.guesser.areas.user.models.binding.RegisterBindingModel"*/-->
+<!--/*@thymesVar id="date" type="ex.guesser.areas.common.dtos.BirthdayInputsDTO"*/-->
+<th:block th:replace="fragments/navbar"></th:block>
+<div class="container col-sm-4 center-block">
+    <form th:object="${match}" th:action="@{/matches/addMatch}" th:method="POST">
+        <fieldset>
+            <legend>Add Match</legend>
+            <div th:if="${param.error}" class="alert alert-danger">
+                Date is invalid!
+            </div>
+
+            <th:block th:replace="fragments/match/addMatchForm"></th:block>
+            <div class="d-flex justify-content-around mb-4">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<th:block th:replace="fragments/footer"></th:block>
+</body>
+</html>

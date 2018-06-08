@@ -1,0 +1,40 @@
+<th:block th:fregment="matchesTable">
+    <table class="table table-sm table-dark">
+        <tbody>
+        <th:block th:each="match,stat : *{model}">
+            <tr>
+                <td th:text="${match.getKickOff()}" th:field="${match.kickOff}"></td>
+                <td th:text="${match.round}" th:field="${match.round}"></td>
+                <td th:text="${match.home.getName()}" th:field="${match.home}">Russia</td>
+                <td>vs</td>
+                <td th:text="${match.away.getName()}" th:field="${match.away}">England</td>
+                <th:block th:if="${match.status=='closed'}">
+                    <td>
+                        <input type="number" min="0" max="20" name="homeGoals" class="form-control input-sm"
+                               id="homeGoals"
+                               th:field="*{model[__${stat.index}__].goalsHome}"/>
+                    </td>
+                    <td>
+                        <input type="number" min="0" max="20" name="awayGoals" class="form-control input-sm"
+                               id="awayGoals"
+                               th:field="*{model[__${stat.index}__].goalsAway}"/>
+                    </td>
+                </th:block>
+                <td>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="change"
+                                   th:field="*{model[__${stat.index}__].change}" />
+                            Change Status?
+                        </label>
+                    </div>
+                </td>
+                <td>
+                    <input type="hidden" name="id" class="form-control input-sm" id="id"
+                           th:field="*{model[__${stat.index}__].id}"/>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</th:block>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head :: meta"></th:block>
+    <th:block th:replace="fragments/head :: style"></th:block>
+    <th:block th:replace="fragments/head :: script"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"></th:block>
+
+<div class="container">
+
+    <div class="container col-sm-6 center-block">
+        <!--/*@thymesVar id="league" type="ex.guesser.areas.user.models.binding.MiniLeagueBM"*/-->
+        <form th:object="${league}" th:action="@{/miniLeague/create}" th:method="POST">
+            <fieldset>
+                <legend>Create New Mini League</legend>
+
+                <div class="form-group col-sm" th:classappend="${#fields.hasErrors('leagueName')} ? 'has-danger'">
+                    <label for="leagueName">League Name</label>
+                    <input type="text" name="leagueName" class="form-control input-group-lg reg_name" id="leagueName"
+                           th:field="*{leagueName}"/>
+                    <th:block th:if="${#fields.errors('leagueName').size()>0}" >
+                        <div>
+                            <small style="color: tomato" th:text="${#fields.errors('leagueName').get(0)}"></small>
+                        </div>
+                    </th:block>
+                </div>
+
+                <div class="d-flex justify-content-around mb-4">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<th:block th:replace="fragments/footer"></th:block>
+</body>
+</html>
