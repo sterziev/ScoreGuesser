@@ -2,78 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e404f3c4-f0ba-455c-8091-976349fde7b2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/argentina.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/belgium.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/brazil.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/colombia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/costaRica.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/croatia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/denmark.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/egypt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/england.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/france.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/germany.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/iceland.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/iran.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/japan.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/mexico.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/morocco.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/nigeria.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/panama.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/peru.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/poland.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/portugal.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/russia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/saudiArabia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/senegal.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/serbia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/southKorea.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/spain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/sweden.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/tunisia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/uruguay.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/shwitzerland.png" afterPath="$PROJECT_DIR$/src/main/resources/static/img/teamFlags/national/switzerland.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/common/commonFunctions/LocalDateParser.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/common/commonFunctions/LocalDateParser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/matches/entities/Team.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/matches/entities/Team.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/controller/UserController.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/entities/User.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/entities/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/models/binding/RegisterBindingModel.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/models/binding/RegisterBindingModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/models/binding/UserPassword.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/models/binding/UserPassword.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$1.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$2.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$3.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$4.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$5.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$6.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$7.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/ex/guesser/areas/user/services/UserServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/common/commonFunctions/LocalDateParser.java" afterPath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/common/commonFunctions/LocalDateParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/matches/entities/Team.java" afterPath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/matches/entities/Team.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/entities/User.java" afterPath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/entities/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/models/binding/RegisterBindingModel.java" afterPath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/models/binding/RegisterBindingModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/models/binding/UserPassword.java" afterPath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/models/binding/UserPassword.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/services/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/ex/guesser/areas/user/services/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/league/scoreBoardFrag.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/league/scoreBoardFrag.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/match/matchForm.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/match/matchForm.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/match/matchFormGuest.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/match/matchFormGuest.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/user/userFormEmail.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/user/userFormEmail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/user/userFormPasswordReg.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/user/userFormPasswordReg.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/user/userFormPersonalInfo1.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/user/userFormPersonalInfo1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/user/login.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/user/myProfile/show.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/user/myProfile/show.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/application.properties" afterPath="$PROJECT_DIR$/target/classes/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/fragments/league/scoreBoardFrag.html" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/league/scoreBoardFrag.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/fragments/match/matchForm.html" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/match/matchForm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/fragments/user/userFormEmail.html" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/user/userFormEmail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/fragments/user/userFormPasswordReg.html" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/user/userFormPasswordReg.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/fragments/user/userFormPersonalInfo1.html" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/user/userFormPersonalInfo1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/user/login.html" afterPath="$PROJECT_DIR$/target/classes/templates/user/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/user/myProfile/show.html" afterPath="$PROJECT_DIR$/target/classes/templates/user/myProfile/show.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -89,8 +18,8 @@
       <file leaf-file-name="matchFormGuest.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/match/matchFormGuest.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-817">
-              <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
+            <state relative-caret-position="475">
+              <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -173,7 +102,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1378" />
@@ -525,15 +454,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528497988863</updated>
-      <workItem from="1528497993402" duration="17790000" />
+      <workItem from="1528497993402" duration="18359000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17790000" />
+    <option name="totallyTimeSpent" value="18359000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -915,8 +844,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fragments/match/matchFormGuest.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-817">
-          <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
+        <state relative-caret-position="475">
+          <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
           <folding />
         </state>
       </provider>
