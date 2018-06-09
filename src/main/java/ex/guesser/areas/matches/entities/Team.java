@@ -15,6 +15,12 @@ public class Team {
     @Column
     private String groups;
 
+    @Column
+    private String flag;
+
+    @Column
+    private String clubLeague;
+
     @OneToMany(mappedBy="home")
     private List<FootballMatch> matchesHome;
 
@@ -22,6 +28,22 @@ public class Team {
     private List<FootballMatch> matchesAway;
 
     public Team() {
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public String getClubLeague() {
+        return clubLeague;
+    }
+
+    public void setClubLeague(String clubLeague) {
+        this.clubLeague = clubLeague;
     }
 
     public long getId() {

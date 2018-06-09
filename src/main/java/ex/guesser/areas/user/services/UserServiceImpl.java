@@ -40,6 +40,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static ex.guesser.areas.common.commonFunctions.LocalDateParser.localDateParser;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -77,7 +79,7 @@ public class UserServiceImpl implements UserService {
         User user = this.mapper.map(bindingModel, User.class);
 
         user.setPassword(this.encoder.encode(bindingModel.getPassword()));
-        LocalDate birthday = LocalDate.of(Integer.parseInt(bindingModel.getYear()), Integer.parseInt(bindingModel.getMonth()), Integer.parseInt(bindingModel.getDay()));
+        LocalDate birthday = localDateParser(bindingModel.getYear(), bindingModel.getMonth(), bindingModel.getDay());
         user.setBirthday(birthday);
         Role role = this.roleRepository.findFirstByAuthority("ROLE_USER");
         user.addRole(role);
@@ -94,8 +96,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> getAll() {
         List<User> users = this.userRepository.findAll();
         Type usersListType = new TypeToken<List<UserDTO>>() {}.getType();
-        List<UserDTO> map = this.mapper.map(users, usersListType);
-        return map;
+        return this.mapper.map(users, usersListType);
 
     }
 
@@ -104,10 +105,11 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = this.userRepository.findById(id);
         if (!user.isPresent()) throw new UserNotFound();
         UserDTO userDTO = this.mapper.map(user.get(), UserDTO.class);
-        userDTO.setDay(user.get().getBirthday().getDayOfMonth() + "");
-        userDTO.setMonth(user.get().getBirthday().getMonthValue() + "");
-        userDTO.setYear(user.get().getBirthday().getYear() + "");
-
+        if (user.get().getBirthday()!=null) {
+            userDTO.setDay(user.get().getBirthday().getDayOfMonth() + "");
+            userDTO.setMonth(user.get().getBirthday().getMonthValue() + "");
+            userDTO.setYear(user.get().getBirthday().getYear() + "");
+        }
         return userDTO;
     }
 
@@ -206,9 +208,8 @@ public class UserServiceImpl implements UserService {
 
         List<User> users = this.userRepository.findAllById(participantsID);
         Type userTypeList = new TypeToken<List<UserWithPointsDto>>() {}.getType();
-        List<UserWithPointsDto> userPoints = this.mapper.map(users, userTypeList);
 
-        return userPoints;
+        return this.mapper.map(users, userTypeList);
     }
 
     @Override
@@ -258,7 +259,7 @@ public class UserServiceImpl implements UserService {
                 d.setLastName(s.getLastName());
                 d.setUsername(s.getUsername());
                 d.setFavTeam(s.getFavTeam());
-                d.setSex(s.getSex().toString());
+                d.setSex(s.getSexString());
                 d.setCountry(s.getCountry());
 
                 return d;

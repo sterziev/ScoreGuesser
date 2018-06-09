@@ -30,7 +30,6 @@ public class RegisterBindingModel extends UserPassword{
     private static final String DUPLICATEDUSERNAME = "This user name is taken, please choose another";
     @NotEmpty(message = USER_NAME_NOT_EMPTY_MSG)
     @Size(min = 5, max = 50, message = LENGHT_EMAIL_MSG)
-    @Email(message = EMAIL_NOT_VALID_MSG)
     @CheckForDuplicatedUsername(message = DUPLICATEDUSERNAME)
     private String username;
 
@@ -44,25 +43,25 @@ public class RegisterBindingModel extends UserPassword{
 
     private String favTeam;
 
-    @NotNull(message = DAY_NOT_EMMPTY_MSG)
-    @CustomMinForStr(value = "1", message = DAY_IN_RANGE_MSG)
-    @CustomMaxForStr(value = "31", message = DAY_IN_RANGE_MSG)
+//    @NotNull(message = DAY_NOT_EMMPTY_MSG)
+//    @CustomMinForStr(value = "1", message = DAY_IN_RANGE_MSG)
+//    @CustomMaxForStr(value = "31", message = DAY_IN_RANGE_MSG)
     private String day;
 
-    @NotNull(message = MONTH_NOT_EMMPTY_MSG)
-    @CustomMinForStr(value = "1", message = MONTH_IN_RANGE_MSG)
-    @CustomMaxForStr(value = "12", message = MONTH_IN_RANGE_MSG)
+//    @NotNull(message = MONTH_NOT_EMMPTY_MSG)
+//    @CustomMinForStr(value = "1", message = MONTH_IN_RANGE_MSG)
+//    @CustomMaxForStr(value = "12", message = MONTH_IN_RANGE_MSG)
     private String month;
 
-    @NotNull(message = YEAR_NOT_EMMPTY_MSG)
-    @CustomMinForStr(value = "1905", message = YEAR_IN_RANGE_MSG)
-    @CustomMaxForStr(value = "2017", message = YEAR_IN_RANGE_MSG)
+//    @NotNull(message = YEAR_NOT_EMMPTY_MSG)
+//    @CustomMinForStr(value = "1905", message = YEAR_IN_RANGE_MSG)
+//    @CustomMaxForStr(value = "2017", message = YEAR_IN_RANGE_MSG)
     private String year;
 
     
     private String country;
     
-    @Sex(message = SEX_ERROR_MSG)
+//    @Sex(message = SEX_ERROR_MSG)
     private String sex;
 
     public RegisterBindingModel() {

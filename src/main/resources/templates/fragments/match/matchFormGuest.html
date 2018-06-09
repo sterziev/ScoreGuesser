@@ -1,70 +1,110 @@
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--/*@thymesVar id="matches" type="ex.guesser.areas.matches.models.binding.MatchDisplayContainer"*/-->
 <th:block th:fregment="matchForm" th:object="${matches}">
 
 
-    <th:block th:each="r: *{rounds}">
+    <th:block th:each="r,iter: *{rounds}">
         <div th:each="match,stat: ${matches.getMatchesByRound(r)}">
-            <div th:styleappend="${matches.getCurrentRound()==match.getRound()}? 'display: ;':'display: none;'" th:id="${'round'+match.getRound() + '-'+ stat.index}">
+            <div th:styleappend="${matches.getCurrentRound()==match.getRound()}? 'display: ;':'display: none;'"
+                 th:id="${'round'+match.getRound() + '-'+ stat.index}">
                 <div class="row no-margin">
-                    <div class="col-sm-12 header header-height" th:text="${match.getKickOff()}">
+                    <div class="col-12 header header-height r-top-25"
+                         th:text="${#temporals.format(match.getKickOff(),'HH:mm dd MMMM')}">
                         11.11.2018 14:30
                     </div>
                 </div>
-                <div class="row row-height no-margin">
-                    <div class="col-sm text" th:text="${match.getHome().getName()}">
-                        Team A
+                <div class="row no-margin bg-match " th:with="matchIndex=${matches.getMatchIdInList(match.id)}">
+                    <div class="col-4 no-padding">
+                        <div class="col text" th:text="${match.getHome().getName()}">
+                            Team A
+                        </div>
+                        <div class="col text">
+                            <img th:src="@{
+                            '/img/teamFlags/' +
+                            ${match.getHome().getClubLeague()} +
+                            '/' + ${match.getHome().getFlag()} + '.png'}" class="img">
+                        </div>
                     </div>
-                        <th:block th:if="${match.getPredictedGalsHome()==null}">
-                            <div class="col-sm-1 text">
+
+                    <div class="col-4 text align-self-center">
+                        <div class="col-2 flex no-padding">
+                            <th:block th:if="${match.getPredictedGalsHome()==null}">
                                 -
-                            </div>
-                        </th:block>
-                        <th:block th:unless="${match.getPredictedGalsHome()==null}">
-                            <div class="col-sm-1 text" th:text="${match.getPredictedGalsHome()}">
-                                2
-                            </div>
-                        </th:block>
-                    <div class="col-sm-1 text">
-                        vs
-                    </div>
-                        <th:block th:if="${match.getPredictedGalsHome()==null}">
-                            <div class="col-sm-1 text">
+                            </th:block>
+                            <th:block th:unless="${match.getPredictedGalsHome()==null}">
+                                <th:block th:text="${match.getPredictedGalsHome()}">
+                                    2
+                                </th:block>
+                            </th:block>
+                        </div>
+                        <div class="col-2 flex no-padding"
+                             th:classappend="${match.getStatus()=='current'}? 'min-display':''">
+                            vs
+                        </div>
+                        <div class="col-2 flex no-padding">
+                            <th:block th:if="${match.getPredictedGalsHome()==null}">
                                 -
-                            </div>
-                        </th:block>
-                        <th:block th:unless="${match.getPredictedGoalsAway()==null}">
-                            <div class="col-sm-1 text" th:text="${match.getPredictedGoalsAway()}">
-                                2
-                            </div>
-                        </th:block>
-                    <div class="col-sm text" th:text="${match.getAway().getName()}">
-                        Team B
+                            </th:block>
+                            <th:block th:unless="${match.getPredictedGoalsAway()==null}">
+                                <th:block th:text="${match.getPredictedGoalsAway()}">
+                                    2
+                                </th:block>
+                            </th:block>
+                        </div>
                     </div>
+
+                    <div class="col-4 no-padding">
+                        <div class="col text" th:text="${match.getAway().getName()}">
+                            Team B
+                        </div>
+                        <div class="col text">
+                            <img th:src="@{
+                            '/img/teamFlags/' +
+                            ${match.getAway().getClubLeague()} +
+                            '/' + ${match.getAway().getFlag()} + '.png'}" class="img">
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" class="form-control input-sm" id="id"
+                           th:field="*{model[__${matchIndex}__].id}"/>
                 </div>
 
-                <div class="row row-height no-margin">
-                    <div class="col-sm text">
-                        <div class="row row-height no-margin">
+                <div class="row bg-match no-margin r-bottom-25">
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-3 text">
+                        <div class="row row-height no-margin label-bgr">
                             <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
-                                <div class="col-sm small-text zero-padding">result:</div>
-                                <div class="col-sm text-left zero-padding"
+                                <div class="col small-text zero-padding">result:</div>
+                                <div class="col text-left zero-padding"
                                      th:text="${match.getGoalsHome() + '-' + match.getGoalsAway()}">-
                                 </div>
                             </th:block>
                         </div>
                     </div>
-                    <div class="col-sm-4 text">
-                        <div class="row no-margin">
-                            <div class="col-sm-6" align="center">
-                                <input type="checkbox" class="input_class_checkbox">
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="checkbox" class="input_class_checkbox">
-                            </div>
+                    <div class="col text">
+                        <!--<div class="row no-margin">-->
+                        <!--<div class="col-6" align="center">-->
+                        <!--<input type="checkbox" class="input_class_checkbox">-->
+                        <!--</div>-->
+                        <!--<div class="col-6">-->
+                        <!--<input type="checkbox" class="input_class_checkbox">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="col-3 text">
+                        <div class="row row-height no-margin label-bgr">
+                            <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
+                                <div class="col small-text zero-padding">points:</div>
+                                <div class="col text-left zero-padding"
+                                     th:text="${match.getPoint()}">-
+                                </div>
+                            </th:block>
                         </div>
                     </div>
-                    <div class="col-sm-4 text" th:text="${match.getPoint()}">
-                        0
+                    <div class="col-1">
+
                     </div>
                 </div>
                 <br/>

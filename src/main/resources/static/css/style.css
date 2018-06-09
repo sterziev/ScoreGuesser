@@ -25,6 +25,7 @@
     padding-top : 0.30rem;
     padding-bottom: 0.30rem;
     display: flex;
+    flex-wrap: nowrap;
 }
 .headerColor.card-header{
     background-color: #a2a2a2
@@ -114,7 +115,7 @@
     .text{
         padding-right: 15px!important;
         padding-left: 15px!important;
-        font-size: 1.5em!important;
+        font-size: 1.2em!important;
     }
 
     .header {
@@ -129,8 +130,28 @@
     }
 }
 
+@media (max-width: 400px) {
+    .flex.min-display{
+        display: none;!important;
+    }
+
+    td:nth-of-type(3) {
+        display: none;
+    }
+    td:nth-of-type(4) {
+        display: none;
+    }
+    th:nth-of-type(3) {
+        display: none;
+    }
+    th:nth-of-type(4) {
+        display: none;
+    }
+
+}
+
 .small-text{
-    font-size: 0.5em;
+    font-size: 0.6em;
     color: black;
     text-align: right;
     vertical-align: center;
@@ -138,7 +159,7 @@
 }
 
 .zero-padding{
-    padding: 5px;
+    padding: 5px 0 5px 5px;
 }
 
 .result{
@@ -161,26 +182,13 @@
     display: block;
     /* width: 100%; */
     padding: .5rem .25rem;
-    font-size: 1.5rem;
+    font-size: 1em;
     line-height: 2;
     color: #464a4c;
-    background-color: #ffffff;
-    background-image: none;
+    background: #ffffff none;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
-    border-top-color: rgba(0, 0, 0, 0.15);
-    border-top-style: solid;
-    border-top-width: 1px;
-    border-right-color: rgba(0, 0, 0, 0.15);
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-bottom-color: rgba(0, 0, 0, 0.15);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-left-color: rgba(0, 0, 0, 0.15);
-    border-left-style: solid;
-    border-left-width: 1px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-image-source: initial;
     border-image-slice: initial;
     border-image-width: initial;
@@ -204,7 +212,7 @@
 .flex{
     display: inline-block;
     position: relative;
-    font-size: 0.8em;
+    /*font-size: 0.8em;*/
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -226,4 +234,14 @@ input[type=number]::-webkit-outer-spin-button {
 .r-bottom-25{
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.label-bgr{
+    background-color: #bfbfbf;
+    margin: 15px;
+    border-radius: 1.5rem
 }

@@ -20,7 +20,10 @@
                             Team A
                         </div>
                         <div class="col text">
-                            <img th:src="@{'/img/teamFlags/national/shwitzerland.png'}" class="img">
+                            <img th:src="@{
+                            '/img/teamFlags/' +
+                            ${match.getHome().getClubLeague()} +
+                            '/' + ${match.getHome().getFlag()} + '.png'}" class="img">
                         </div>
                     </div>
 
@@ -40,7 +43,8 @@
                                 </th:block>
                             </th:block>
                         </div>
-                        <div class="col-2 flex no-padding">
+                        <div class="col-2 flex no-padding"
+                             th:classappend="${match.getStatus()=='current'}? 'min-display':''">
                             vs
                         </div>
                         <th:block th:if="${match.status.equalsIgnoreCase('current')}">
@@ -65,7 +69,10 @@
                             Team B
                         </div>
                         <div class="col text">
-                            <img th:src="@{'/img/teamFlags/national/shwitzerland.png'}" class="img">
+                            <img th:src="@{
+                            '/img/teamFlags/' +
+                            ${match.getAway().getClubLeague()} +
+                            '/' + ${match.getAway().getFlag()} + '.png'}" class="img">
                         </div>
                     </div>
                     <input type="hidden" name="id" class="form-control input-sm" id="id"
@@ -73,8 +80,11 @@
                 </div>
 
                 <div class="row bg-match no-margin r-bottom-25">
-                    <div class="col text">
-                        <div class="row row-height no-margin">
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-3 text">
+                        <div class="row row-height no-margin label-bgr">
                             <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
                                 <div class="col small-text zero-padding">result:</div>
                                 <div class="col text-left zero-padding"
@@ -83,18 +93,28 @@
                             </th:block>
                         </div>
                     </div>
-                    <div class="col-4 text">
-                        <div class="row no-margin">
-                            <div class="col-6" align="center">
-                                <input type="checkbox" class="input_class_checkbox">
-                            </div>
-                            <div class="col-6">
-                                <input type="checkbox" class="input_class_checkbox">
-                            </div>
+                    <div class="col text">
+                        <!--<div class="row no-margin">-->
+                            <!--<div class="col-6" align="center">-->
+                                <!--<input type="checkbox" class="input_class_checkbox">-->
+                            <!--</div>-->
+                            <!--<div class="col-6">-->
+                                <!--<input type="checkbox" class="input_class_checkbox">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="col-3 text">
+                        <div class="row row-height no-margin label-bgr">
+                            <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
+                                <div class="col small-text zero-padding">points:</div>
+                                <div class="col text-left zero-padding"
+                                     th:text="${match.getPoint()}">-
+                                </div>
+                            </th:block>
                         </div>
                     </div>
-                    <div class="col-4 text" th:text="${match.getPoint()}">
-                        0
+                    <div class="col-1">
+
                     </div>
                 </div>
                 <br/>

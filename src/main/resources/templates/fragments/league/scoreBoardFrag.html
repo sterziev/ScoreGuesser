@@ -1,11 +1,11 @@
 <th:block th:fregment="scoreBoardFrag">
-    <table class="table table-sm table-dark">
+    <table class="table table-sm">
         <thead>
         <tr>
             <th scope="col">Position</th>
             <th scope="col">Username</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
+            <th scope="col" class="min-display">First Name</th>
+            <th scope="col" class="min-display">Last Name</th>
             <th scope="col">Points</th>
         </tr>
         </thead>
@@ -15,8 +15,8 @@
             <tr th:classappend="${(#authentication.name == user.username)? 'table-active':''}">
                 <td th:text="${stat.index+1}"></td>
                 <td ><a th:text="${user.getUsername()}" th:href="@{'/userInfo/' + ${user.getId()}}"></a></td>
-                <td th:text="${user.getFirstName()}"></td>
-                <td th:text="${user.getLastName()}"></td>
+                <td th:text="${user.getFirstName()}" class="min-display"></td>
+                <td th:text="${user.getLastName()}" class="min-display"></td>
                 <td th:text="${user.getPointsNumber()}"></td>
             </tr>
         </th:block>

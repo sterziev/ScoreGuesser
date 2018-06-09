@@ -1,6 +1,6 @@
 <th:block th:fregment="personal-infoEmail">
     <div class="form-group" th:classappend="${#fields.hasErrors('username')} ? 'has-danger'">
-        <label for="username">Email</label>
+        <label for="username" class="bold">Username*</label>
         <input type="text" name="username" class="form-control" id="username" th:field="*{username}"/>
         <th:block th:if="${#fields.errors('username').size()>0}" >
             <div>

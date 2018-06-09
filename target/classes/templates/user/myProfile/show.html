@@ -31,31 +31,32 @@
                     <tbody>
                     <tr>
                         <th scope="row">First Name</th>
-                        <td>Mark</td>
+                        <td th:text="${user.getFirstName()}">Mark</td>
                     </tr>
                     <tr>
                         <th scope="row">Last Name</th>
-                        <td>Jacob</td>
+                        <td th:text="${user.getLastName()}">Jacob</td>
                     </tr>
                     <tr>
                         <th scope="row">Username</th>
-                        <td>Larrysadasdasdadasd</td>
+                        <td th:text="${user.getUsername()}">Larrysadasdasdadasd</td>
                     </tr>
                     <tr>
                         <th scope="row">Country</th>
-                        <td>Bulgaria</td>
+                        <td th:text="${user.getCountry()}">Bulgaria</td>
                     </tr>
                     <tr>
                         <th scope="row">Birthday</th>
-                        <td>12.12.1201</td>
+                        <td th:if="${user.getDay()== null}"></td>
+                        <td th:unless="${user.getDay()== null}" th:text="${user.getDay() + '.' + user.getMonth() + '.' + user.getYear()}">12.12.1201</td>
                     </tr>
                     <tr>
                         <th scope="row">Sex</th>
-                        <td>Male</td>
+                        <td th:text="${user.getSex()}">Male</td>
                     </tr>
                     <tr>
                         <th scope="row">Favorite Team</th>
-                        <td>CSKA</td>
+                        <td th:text="${user.getFavTeam()}">CSKA</td>
                     </tr>
                     </tbody>
                 </table>

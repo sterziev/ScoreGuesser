@@ -65,7 +65,7 @@ public class UserController extends BaseController{
             return this.view("user/register");
         }
         this.userService.register(bindingModel);
-        return this.redirect("/");
+        return this.redirect("/login");
     }
 
     @GetMapping("/unauthorized")

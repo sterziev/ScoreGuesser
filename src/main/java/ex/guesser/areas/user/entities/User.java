@@ -204,6 +204,12 @@ public class User implements UserDetails {
     public Gender getSex() {
         return sex;
     }
+    public String getSexString() {
+        if (sex ==null){
+            return null;
+        }
+        return sex.toString();
+    }
 
     public void setSex(Gender sex) {
         this.sex = sex;
