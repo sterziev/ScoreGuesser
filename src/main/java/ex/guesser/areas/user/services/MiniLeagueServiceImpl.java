@@ -8,12 +8,15 @@ import ex.guesser.areas.user.entities.User;
 import ex.guesser.areas.user.models.binding.JoinMiniLeagueBM;
 import ex.guesser.areas.user.models.binding.MiniLeagueBM;
 import ex.guesser.areas.user.models.dtos.MiniLeagueDto;
+import ex.guesser.areas.user.models.dtos.UserWithPointsDto;
 import ex.guesser.areas.user.repositories.MiniLeagueRepository;
 import ex.guesser.areas.user.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -72,10 +75,23 @@ public class MiniLeagueServiceImpl implements MiniLeagueService {
     }
 
     @Override
-    public MiniLeagueDto findById(String id) {
-
+    public MiniLeagueDto findById(String id, List<UserWithPointsDto> usersPoints, Principal principal) {
+        boolean isParticipant = false;
         MiniLeague miniLeague = this.miniLeagueRepository.findById(id).orElse(null);
-        return this.mapper.map(miniLeague,MiniLeagueDto.class);
+        if (miniLeague == null){
+            throw new LeagueNotFound();
+        }
+        MiniLeagueDto miniLeagueDto = this.mapper.map(miniLeague, MiniLeagueDto.class);
+        for (UserWithPointsDto usersPoint : usersPoints) {
+            if (usersPoint.getUsername().equalsIgnoreCase(principal.getName())){
+                isParticipant=true;
+            }
+        }
+        if (!isParticipant){
+            miniLeagueDto.setKeyCode(null);
+        }
+        return miniLeagueDto;
+
     }
 
     private String createLegueKey(String leagueName) {

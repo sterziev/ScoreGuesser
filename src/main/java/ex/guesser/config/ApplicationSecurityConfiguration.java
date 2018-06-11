@@ -46,7 +46,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 .rememberMeParameter("remember")
                 .rememberMeCookieName("rememberMeCookie")
                 .key("48433e39-e610-4a2c-926c-f86d46f5360a")
-                .tokenValiditySeconds(100)
+                .tokenValiditySeconds(2600000)
                 .userDetailsService(userDetailsService)
                 .and()
                 .logout().logoutUrl("/logout")

@@ -104,8 +104,8 @@
                         <!--</div>-->
                     </div>
                     <div class="col-3 text">
-                        <div class="row row-height no-margin label-bgr">
-                            <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
+                        <div class="row row-height no-margin label-bgr" >
+                            <th:block th:unless="${match.getPoint()==null}">
                                 <div class="col small-text zero-padding">points:</div>
                                 <div class="col text-left zero-padding"
                                      th:text="${match.getPoint()}">-

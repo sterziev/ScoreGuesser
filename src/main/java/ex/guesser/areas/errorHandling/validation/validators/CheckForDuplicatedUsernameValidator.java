@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.util.List;
 
 @Component
 public class CheckForDuplicatedUsernameValidator implements ConstraintValidator<CheckForDuplicatedUsername, String> {
@@ -20,11 +21,13 @@ public class CheckForDuplicatedUsernameValidator implements ConstraintValidator<
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
-        User user = this.userRepository.findByUsername(username);
-        if (user != null) {
-            return false;
+
+        List<User> userList = this.userRepository.findAll();
+        for (User user : userList) {
+            if (user.getUsername().trim().equalsIgnoreCase(username.trim())){
+                return false;
+            }
         }
         return true;
-
     }
 }

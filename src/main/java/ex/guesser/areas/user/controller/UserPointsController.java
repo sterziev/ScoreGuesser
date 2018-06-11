@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,12 +41,12 @@ public class UserPointsController extends BaseController{
 
 
     @GetMapping("/standing/ml/{id}")
-    public ModelAndView showMiniLeague(@PathVariable String id){
+    public ModelAndView showMiniLeague(@PathVariable String id, Principal principal){
         List<UserWithPointsDto> usersPoints = this.userService.getUserPointsFromLeague(id)
                 .stream()
                 .sorted((x2,x1)->x1.getPointsNumber().compareTo(x2.getPointsNumber()))
                 .collect(Collectors.toList());
-        MiniLeagueDto miniLeague = this.miniLeagueService.findById(id);
+        MiniLeagueDto miniLeague = this.miniLeagueService.findById(id, usersPoints, principal);
 
         return this.view("user/standing","userPoints", usersPoints,"currentLeague",miniLeague);
     }
