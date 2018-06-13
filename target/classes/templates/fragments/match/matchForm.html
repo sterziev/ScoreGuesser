@@ -15,55 +15,7 @@
                     </div>
                 </div>
                 <div class="row no-margin bg-match " th:with="matchIndex=${matches.getMatchIdInList(match.id)}">
-                    <div class="col-4 no-padding">
-                        <div class="col text" th:text="${match.getHome().getName()}">
-                            Team A
-                        </div>
-                        <div class="col text">
-                            <img th:src="@{
-                            '/img/teamFlags/' +
-                            ${match.getHome().getClubLeague()} +
-                            '/' + ${match.getHome().getFlag()} + '.png'}" class="img">
-                        </div>
-                    </div>
-
-                    <div class="col-4 text align-self-center">
-                        <th:block th:if="${match.status.equalsIgnoreCase('current')}">
-                            <input type="number" min="0" max="20" name="homeGoals"
-                                   class="goals-input margins flex"
-                                   id="homeGoals" th:field="*{model[__${matchIndex}__].predictedGalsHome}"/>
-                        </th:block>
-                        <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
-                            <th:block th:if="${match.getPredictedGalsHome()==null}">
-                                    -
-                            </th:block>
-                            <th:block th:unless="${match.getPredictedGalsHome()==null}">
-                                <th:block th:text="${match.getPredictedGalsHome()}">
-                                    2
-                                </th:block>
-                            </th:block>
-                        </div>
-                        <div class="col-2 flex no-padding"
-                             th:classappend="${match.getStatus()=='current'}? 'min-display':''">
-                            vs
-                        </div>
-                        <th:block th:if="${match.status.equalsIgnoreCase('current')}">
-                            <input type="number" min="0" max="20" name="awayGoals"
-                                   class="goals-input margins flex"
-                                   id="awayGoals" th:field="*{model[__${matchIndex}__].predictedGoalsAway}"/>
-                        </th:block>
-                        <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
-                            <th:block th:if="${match.getPredictedGalsHome()==null}">
-                                    -
-                            </th:block>
-                            <th:block th:unless="${match.getPredictedGoalsAway()==null}">
-                                <th:block th:text="${match.getPredictedGoalsAway()}">
-                                    2
-                                </th:block>
-                            </th:block>
-                        </div>
-                    </div>
-
+                    <!--change teams BEGIN-->
                     <div class="col-4 no-padding">
                         <div class="col text" th:text="${match.getAway().getName()}">
                             Team B
@@ -75,6 +27,63 @@
                             '/' + ${match.getAway().getFlag()} + '.png'}" class="img">
                         </div>
                     </div>
+                    <!--change teams END-->
+                    <div class="col-4 text align-self-center">
+                        <!--prediction swap begin-->
+                        <th:block th:if="${match.status.equalsIgnoreCase('current')}">
+                            <input type="number" min="0" max="20" name="awayGoals"
+                                   class="goals-input margins flex"
+                                   id="awayGoals" th:field="*{model[__${matchIndex}__].predictedGoalsAway}"/>
+                        </th:block>
+                        <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
+                            <th:block th:if="${match.getPredictedGalsHome()==null}">
+                                -
+                            </th:block>
+                            <th:block th:unless="${match.getPredictedGoalsAway()==null}">
+                                <th:block th:text="${match.getPredictedGoalsAway()}">
+                                    2
+                                </th:block>
+                            </th:block>
+                        </div>
+                        <!--prediction swap begin-->
+                        <div class="col-2 flex no-padding"
+                             th:classappend="${match.getStatus()=='current'}? 'min-display':''">
+                            vs
+                        </div>
+                        <!--prediction swap begin-->
+                        <th:block th:if="${match.status.equalsIgnoreCase('current')}">
+                            <input type="number" min="0" max="20" name="homeGoals"
+                                   class="goals-input margins flex"
+                                   id="homeGoals" th:field="*{model[__${matchIndex}__].predictedGalsHome}"/>
+                        </th:block>
+                        <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
+                            <th:block th:if="${match.getPredictedGalsHome()==null}">
+                                -
+                            </th:block>
+                            <th:block th:unless="${match.getPredictedGalsHome()==null}">
+                                <th:block th:text="${match.getPredictedGalsHome()}">
+                                    2
+                                </th:block>
+                            </th:block>
+                        </div>
+                        <!--prediction swap begin-->
+
+                    </div>
+
+                    <!--change teams BEGIN-->
+                    <div class="col-4 no-padding">
+                        <div class="col text" th:text="${match.getHome().getName()}">
+                            Team A
+                        </div>
+                        <div class="col text">
+                            <img th:src="@{
+                            '/img/teamFlags/' +
+                            ${match.getHome().getClubLeague()} +
+                            '/' + ${match.getHome().getFlag()} + '.png'}" class="img">
+                        </div>
+                    </div>
+                    <!--change teams END-->
+
                     <input type="hidden" name="id" class="form-control input-sm" id="id"
                            th:field="*{model[__${matchIndex}__].id}"/>
                 </div>
@@ -88,8 +97,9 @@
                             <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
                                 <div class="col small-text zero-padding">result:</div>
                                 <div class="col text-left zero-padding"
-                                     th:text="${match.getGoalsHome() + '-' + match.getGoalsAway()}">-
+                                     th:text="${match.getGoalsAway() + '-' + match.getGoalsHome()}">-
                                 </div>
+                                <!--swap rezult-->
                             </th:block>
                         </div>
                     </div>
