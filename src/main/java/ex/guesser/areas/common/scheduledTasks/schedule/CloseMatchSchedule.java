@@ -15,8 +15,8 @@ public class CloseMatchSchedule {
     }
 
 
-    @Scheduled(fixedRate = 600000)
-    public void reportCurrentTime() {
-        this.closeMatchService.closeMatch();
-    }
+//    @Scheduled(fixedRate = 600000)
+//    public void reportCurrentTime() {
+//        this.closeMatchService.closeMatch();
+//    }
 }
