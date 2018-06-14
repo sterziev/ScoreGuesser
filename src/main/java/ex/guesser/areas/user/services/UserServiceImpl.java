@@ -162,7 +162,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserWithPointsDto> getUserPoints() {
-        List<User> users = this.userRepository.findAll();
+        List<User> users = this.userRepository.findAllUsersFetchPoints();
         Type userTypeList = new TypeToken<List<UserWithPointsDto>>() {}.getType();
 
         return this.mapper.map(users, userTypeList);
@@ -207,7 +207,8 @@ public class UserServiceImpl implements UserService {
                 map(User::getId).
                 collect(Collectors.toList());
 
-        List<User> users = this.userRepository.findAllById(participantsID);
+
+        List<User> users = this.userRepository.findAllUsersByIdsFetchPoints(participantsID);
         Type userTypeList = new TypeToken<List<UserWithPointsDto>>() {}.getType();
 
         return this.mapper.map(users, userTypeList);
