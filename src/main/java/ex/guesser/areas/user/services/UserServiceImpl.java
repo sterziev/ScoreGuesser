@@ -7,6 +7,7 @@ import ex.guesser.areas.errorHandling.errors.UserAlreadyLoggedInException;
 import ex.guesser.areas.errorHandling.errors.UserNotFound;
 import ex.guesser.areas.errorHandling.errors.WrongPassword;
 import ex.guesser.areas.points.entities.Points;
+import ex.guesser.areas.points.entities.Prediction;
 import ex.guesser.areas.points.models.dtos.PointsDto;
 import ex.guesser.areas.user.entities.MiniLeague;
 import ex.guesser.areas.user.entities.Role;
@@ -162,7 +163,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserWithPointsDto> getUserPoints() {
-        List<User> users = this.userRepository.findAllUsersFetchPoints();
+        List<User> users = this.userRepository.findAll();
         Type userTypeList = new TypeToken<List<UserWithPointsDto>>() {}.getType();
 
         return this.mapper.map(users, userTypeList);
@@ -208,7 +209,7 @@ public class UserServiceImpl implements UserService {
                 collect(Collectors.toList());
 
 
-        List<User> users = this.userRepository.findAllUsersByIdsFetchPoints(participantsID);
+        List<User> users = this.userRepository.findAllById(participantsID);
         Type userTypeList = new TypeToken<List<UserWithPointsDto>>() {}.getType();
 
         return this.mapper.map(users, userTypeList);
@@ -268,12 +269,17 @@ public class UserServiceImpl implements UserService {
             }
         };
 
-        Converter<Set<Points>, Integer> convertRowPoints = new Converter<Set<Points>, Integer>()
+        Converter<Set<Prediction>, Integer> convertRowPoints = new Converter<Set<Prediction>, Integer>()
         {
-            public Integer convert(MappingContext<Set<Points>, Integer> context)
+            public Integer convert(MappingContext<Set<Prediction>, Integer> context)
             {
                 // If the dog weighs more than 25, then it must be large
-                Integer p = context.getSource().stream().mapToInt(Points::getPoints).sum();
+                Integer p = 0; //context.getSource().stream().mapToInt(Prediction::getPoints).sum();
+                for (Prediction prediction : context.getSource()) {
+                    if (prediction.getPoints()!= null){
+                        p+=prediction.getPoints();
+                    }
+                }
                 return p;
             }
         };
@@ -283,7 +289,7 @@ public class UserServiceImpl implements UserService {
             protected void configure()
             {
                 // Note: this is not normal code. It is "EDSL" so don't get confused
-                using(convertRowPoints).map(source.getUserPoints()).setPointsNumber(0);
+                using(convertRowPoints).map(source.getUserPredictions()).setPointsNumber(0);
             }
         };
 

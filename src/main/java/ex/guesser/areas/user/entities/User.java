@@ -2,6 +2,7 @@ package ex.guesser.areas.user.entities;
 
 import ex.guesser.areas.common.enums.Gender;
 import ex.guesser.areas.points.entities.Points;
+import ex.guesser.areas.points.entities.Prediction;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -66,6 +67,9 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private Set<Points> userPoints;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Prediction> userPredictions;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "league_admin",
@@ -242,5 +246,13 @@ public class User implements UserDetails {
 
     public void setMiniLeagues(Set<MiniLeague> miniLeagues) {
         this.miniLeagues = miniLeagues;
+    }
+
+    public Set<Prediction> getUserPredictions() {
+        return userPredictions;
+    }
+
+    public void setUserPredictions(Set<Prediction> userPredictions) {
+        this.userPredictions = userPredictions;
     }
 }
