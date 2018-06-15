@@ -1,8 +1,15 @@
 package ex.guesser.areas.matches.models.binding;
 
+import ex.guesser.areas.matches.entities.Round;
+import ex.guesser.areas.matches.repositories.RoundsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static ex.guesser.areas.common.commonFunctions.Constants.*;
 
 public class MatchDisplayContainer {
     @Valid
@@ -11,9 +18,12 @@ public class MatchDisplayContainer {
     private Set<Integer> rounds;
     private Map<Integer,Integer> pointsPerRound;
 
-    public MatchDisplayContainer(List<MatchDisplayBindingModel> matchDisplayBindingModel) {
+    @Autowired
+    private RoundsRepository roundsRepository;
+
+    public MatchDisplayContainer(List<MatchDisplayBindingModel> matchDisplayBindingModel, List<Round> roundsEntities) {
         this.model = matchDisplayBindingModel;
-        this.setCurrentRound();
+        this.setCurrentRound(roundsEntities);
         this.setRounds();
         this.setPointsPerRound();
     }
@@ -33,11 +43,29 @@ public class MatchDisplayContainer {
         return currentRound;
     }
 
-    private void setCurrentRound() {
-        for (MatchDisplayBindingModel displayBindingModel : this.model) {
-            if (displayBindingModel.getStatus().equalsIgnoreCase("current")){
-                this.currentRound = displayBindingModel.getRound();
+    private void setCurrentRound( List<Round> roundsEntities) {
+        if (roundsEntities.size()==0){
+            this.currentRound = 0;
+        }
+        else {
+            int minCurrent = Integer.MAX_VALUE;
+            int maxFinished = 0;
+            int minPlanned = 0;
+
+            for (Round r : roundsEntities) {
+                switch (r.getStatus()){
+                    case CURRENT_STATUS: minCurrent = r.getRound()<=minCurrent? r.getRound():minCurrent;
+                    break;
+                    case FINISHED_STATUS: maxFinished = r.getRound()>maxFinished? r.getRound(): maxFinished;
+                }
             }
+            if (minCurrent==0){
+                this.currentRound = maxFinished;
+            }
+            else {
+                this.currentRound=minCurrent;
+            }
+
         }
     }
 
@@ -45,11 +73,11 @@ public class MatchDisplayContainer {
         return rounds;
     }
 
-    public void setRounds() {
+    private void setRounds() {
         this.rounds = this.model.stream().map(MatchDisplayBindingModel::getRound).collect(Collectors.toSet());
     }
     public List<MatchDisplayBindingModel> getMatchesByRound(int r){
-        List result = new ArrayList();
+        List<MatchDisplayBindingModel> result = new ArrayList();
         for (MatchDisplayBindingModel matchDisplayBindingModel : this.model) {
             if (matchDisplayBindingModel.getRound()==r){
                 result.add(matchDisplayBindingModel);
@@ -62,7 +90,7 @@ public class MatchDisplayContainer {
         return pointsPerRound;
     }
 
-    public void setPointsPerRound() {
+    private void setPointsPerRound() {
         this.pointsPerRound = new HashMap<>();
         for (MatchDisplayBindingModel match : model) {
             this.pointsPerRound.putIfAbsent(match.getRound(),0);

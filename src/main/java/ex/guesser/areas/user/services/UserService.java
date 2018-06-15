@@ -23,6 +23,8 @@ public interface UserService extends UserDetailsService {
 
     User editPassword(String id, UpdatePasswordBM bindingModel);
 
+    User resetPassword(String id, UpdatePasswordBM bindingModel);
+
     void isLoggedIn(Authentication authentication);
 
     List<UserWithPointsDto> getUserPoints();

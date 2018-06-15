@@ -3,9 +3,11 @@ package ex.guesser.areas.points.services;
 import ex.guesser.areas.common.commonFunctions.PredictionsToMatchMapping;
 import ex.guesser.areas.errorHandling.errors.UserNotFound;
 import ex.guesser.areas.matches.entities.FootballMatch;
+import ex.guesser.areas.matches.entities.Round;
 import ex.guesser.areas.matches.models.binding.MatchDisplayBindingModel;
 import ex.guesser.areas.matches.models.binding.MatchDisplayContainer;
 import ex.guesser.areas.matches.repositories.MatchRepository;
+import ex.guesser.areas.matches.repositories.RoundsRepository;
 import ex.guesser.areas.matches.services.MatchService;
 import ex.guesser.areas.points.entities.Prediction;
 import ex.guesser.areas.points.repositories.PredictionRepository;
@@ -34,13 +36,15 @@ public class PredictionServiceIml implements PredictionService {
     private final MatchRepository matchRepository;
     private final MatchService matchService;
     private final UserRepository userRepository;
+    private final RoundsRepository roundsRepository;
 
-    public PredictionServiceIml(ModelMapper mapper, PredictionRepository predictionRepository, MatchRepository matchRepository, @Lazy MatchService matchService, UserRepository userRepository) {
+    public PredictionServiceIml(ModelMapper mapper, PredictionRepository predictionRepository, MatchRepository matchRepository, @Lazy MatchService matchService, UserRepository userRepository, RoundsRepository roundsRepository) {
         this.mapper = mapper;
         this.predictionRepository = predictionRepository;
         this.matchRepository = matchRepository;
         this.matchService = matchService;
         this.userRepository = userRepository;
+        this.roundsRepository = roundsRepository;
     }
 
     @Override
@@ -98,13 +102,15 @@ public class PredictionServiceIml implements PredictionService {
         }
 
         List<MatchDisplayBindingModel> currentMatches = this.takePredictions(userId, ALL_MATCHES);
-        return new MatchDisplayContainer(currentMatches);
+        List<Round> r = this.roundsRepository.findAll();
+        return new MatchDisplayContainer(currentMatches,r);
     }
 
     @Override
     public MatchDisplayContainer getFinishedAndClosedPredictions(String userId) {
         List<MatchDisplayBindingModel> currentMatches = this.takePredictions(userId, GUEST_MATCHES);
-        return new MatchDisplayContainer(currentMatches);
+        List<Round> r = this.roundsRepository.findAll();
+        return new MatchDisplayContainer(currentMatches,r);
     }
 
     @Override

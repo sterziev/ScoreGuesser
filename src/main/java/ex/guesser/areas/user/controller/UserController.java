@@ -190,4 +190,60 @@ public class UserController extends BaseController{
         }
         return this.redirect("/user/myProfile");
     }
+///////////////////////////////////////////////////////////////////
+    @GetMapping("/user/myProfile/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ModelAndView edit(@PathVariable String id, @ModelAttribute UpdateUserPersonalBindingModel bindingModel) {
+        UserDTO userDTO = this.userService.getById(id);
+        return this.view("user/myProfile/show","user",userDTO);
+    }
+
+    @GetMapping("/user/editPersonalInfo/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ModelAndView editInfo(@PathVariable String id, @ModelAttribute UpdateUserPersonalBindingModel bindingModel, Authentication authentication) {
+        UserDTO userDTO = this.userService.getById(id);
+        userDTO.setId(id);
+        return this.view("user/myProfile/admin/editPersonalInfo","user",userDTO);
+    }
+
+    @PostMapping("user/editPersonalInfo/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ModelAndView edit(@Valid @ModelAttribute("user") UpdateUserPersonalBindingModel bindingModel,
+                             BindingResult bindingResult,@PathVariable String id,
+                             Authentication authentication) {
+        if (bindingResult.hasErrors()) {
+            return this.view("user/myProfile/admin/editPersonalInfo","user",bindingModel);
+        }
+        this.userService.updateUserPersonalInfo(id, bindingModel);
+        return this.redirect("/user/myProfile/{id}");
+    }
+
+
+    @GetMapping("/user/editPassword/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ModelAndView editPass(@ModelAttribute UpdateUserPersonalBindingModel bindingModel, @PathVariable String id) {
+        UpdatePasswordBM passwordBM = new UpdatePasswordBM();
+        passwordBM.setId(id);
+        return this.view("user/myProfile/admin/editPassword","passwordDTO",passwordBM);
+    }
+
+    @PostMapping("user/editPassword/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ModelAndView editPassword(@Valid @ModelAttribute("passwordDTO") UpdatePasswordBM bindingModel,
+                                     BindingResult bindingResult,@PathVariable String id) {
+        if (bindingResult.hasErrors()) {
+            if (bindingResult.hasGlobalErrors()){
+                bindingResult.rejectValue("password",null,bindingResult.getGlobalError().getDefaultMessage());
+            }
+            return this.view("user/myProfile/admin/editPassword","passwordDTO",bindingModel);
+        }
+        try {
+            this.userService.resetPassword(id, bindingModel);
+        }
+        catch (WrongPassword wp){
+            bindingResult.rejectValue("oldPassword",null,"Wrong Password");
+            return this.view("user/myProfile/admin/editPassword","passwordDTO",bindingModel);
+        }
+        return this.redirect("/user/myProfile/{id}");
+    }
 }

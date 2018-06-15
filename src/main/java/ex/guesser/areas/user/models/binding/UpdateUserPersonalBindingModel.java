@@ -28,6 +28,7 @@ public class UpdateUserPersonalBindingModel {
     private static final String DUPLICATEDUSERNAME = "This user name is taken, please choose another";
 
     private String username;
+    private String id;
 
     @NotEmpty(message = FN_NOT_EMMPTY_MSG)
     @Size(min = 3, max = 20, message = FN_LENGHT_MSG)
@@ -137,5 +138,13 @@ public class UpdateUserPersonalBindingModel {
 
     public String getFullName(){
         return this.firstName + " " + this.lastName;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

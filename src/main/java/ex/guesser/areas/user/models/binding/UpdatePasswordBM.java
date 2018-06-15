@@ -7,6 +7,8 @@ public class UpdatePasswordBM  extends UserPassword{
 
     private String oldPassword;
 
+    private String id;
+
     public String getPassword() {
         return super.password;
     }
@@ -29,6 +31,14 @@ public class UpdatePasswordBM  extends UserPassword{
 
     public void setOldPassword(String oldPassword) {
         this.oldPassword = oldPassword;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
 

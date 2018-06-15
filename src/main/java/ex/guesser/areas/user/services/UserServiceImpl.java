@@ -154,6 +154,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User resetPassword(String id, UpdatePasswordBM bindingModel) {
+        Optional<User> userOptional =  this.userRepository.findById(id);
+        if (!userOptional.isPresent()) throw new UserNotFound();
+        User user =  userOptional.get();
+
+        user.setPassword(this.encoder.encode(bindingModel.getPassword()));
+        return this.userRepository.save(user);
+    }
+
+    @Override
     public void isLoggedIn(Authentication authentication) {
         if (authentication!=null){
             User user = (User)authentication.getPrincipal();

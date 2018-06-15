@@ -22,6 +22,7 @@
                     <th scope="col">Name</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,9 @@
                     <td th:text="${user.getUsername()}"></td>
                     <th><a class="btn btn-secondary" th:href="@{'/user/edit/' + ${user.getId()}}">Edit</a></th>
                     <th><a class="btn btn-secondary" th:href="@{'/user/delete/' + ${user.getId()}}">Delete</a></th>
+                    <th><a class="btn btn-secondary" th:href="@{'/user/myProfile/' + ${user.getId()}}">General</a></th>
+                    <th><a class="btn btn-secondary" th:href="@{'/user/editPersonalInfo/' + ${user.getId()}}">Change Info</a></th>
+                    <th><a class="btn btn-secondary" th:href="@{'/user/editPassword/' + ${user.getId()}}">Reset Pass</a></th>
                 </tr>
                 </tbody>
             </table>
