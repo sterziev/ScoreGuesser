@@ -152,7 +152,6 @@
 
 .small-text{
     font-size: 0.6em;
-    color: black;
     text-align: right;
     vertical-align: center;
     align-self: center!important;
@@ -244,4 +243,25 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #bfbfbf;
     margin: 15px;
     border-radius: 1.5rem
+}
+
+.positive-bgr{
+    background-color: #81cc6b;
+    font-weight: bold;
+    color: aliceblue;
+}
+.negative-bgr{
+    background-color: #fb4d4d;
+    color: antiquewhite;
+    font-weight: bold;
+}
+
+.gold-bgr{
+    background-color: #fbeeaa;
+    font-weight: bold;
+    color: firebrick;
+}
+
+.not-prediction-bgr{
+    background: #fbecbe none;
 }

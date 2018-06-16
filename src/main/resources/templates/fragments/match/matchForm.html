@@ -33,6 +33,7 @@
                         <th:block th:if="${match.status.equalsIgnoreCase('current')}">
                             <input type="number" min="0" max="20" name="awayGoals"
                                    class="goals-input margins flex"
+                                   th:classappend="${match.getPredictedGoalsAway()}? '': 'not-prediction-bgr'"
                                    id="awayGoals" th:field="*{model[__${matchIndex}__].predictedGoalsAway}"/>
                         </th:block>
                         <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
@@ -54,6 +55,7 @@
                         <th:block th:if="${match.status.equalsIgnoreCase('current')}">
                             <input type="number" min="0" max="20" name="homeGoals"
                                    class="goals-input margins flex"
+                                   th:classappend="${match.getPredictedGalsHome()}? '': 'not-prediction-bgr'"
                                    id="homeGoals" th:field="*{model[__${matchIndex}__].predictedGalsHome}"/>
                         </th:block>
                         <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
@@ -114,11 +116,13 @@
                         <!--</div>-->
                     </div>
                     <div class="col-3 text">
-                        <div class="row row-height no-margin label-bgr" >
+                        <div class="row row-height no-margin label-bgr"
+                             th:classappend="${(match.getPoint()==30 ? 'gold-bgr' :
+                             (match.getPoint()>0 ? 'positive-bgr': 'negative-bgr'))}">
                             <th:block th:unless="${match.getPoint()==null}">
                                 <div class="col small-text zero-padding">points:</div>
                                 <div class="col text-left zero-padding"
-                                     th:text="${match.getPoint()}">-
+                                     th:text="${match.getPoint()>0? '+' : ''} + ${match.getPoint()}">-
                                 </div>
                             </th:block>
                         </div>
