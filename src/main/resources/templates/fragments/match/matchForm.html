@@ -33,7 +33,7 @@
                         <th:block th:if="${match.status.equalsIgnoreCase('current')}">
                             <input type="number" min="0" max="20" name="awayGoals"
                                    class="goals-input margins flex"
-                                   th:classappend="${match.getPredictedGoalsAway()}? '': 'not-prediction-bgr'"
+                                   th:classappend="${match.getPredictedGoalsAway()== null}? 'not-prediction-bgr': ''"
                                    id="awayGoals" th:field="*{model[__${matchIndex}__].predictedGoalsAway}"/>
                         </th:block>
                         <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
@@ -55,7 +55,7 @@
                         <th:block th:if="${match.status.equalsIgnoreCase('current')}">
                             <input type="number" min="0" max="20" name="homeGoals"
                                    class="goals-input margins flex"
-                                   th:classappend="${match.getPredictedGalsHome()}? '': 'not-prediction-bgr'"
+                                   th:classappend="${match.getPredictedGalsHome()}== null? 'not-prediction-bgr': ''"
                                    id="homeGoals" th:field="*{model[__${matchIndex}__].predictedGalsHome}"/>
                         </th:block>
                         <div th:unless="${match.status.equalsIgnoreCase('current')}" class="col-2 flex no-padding">
