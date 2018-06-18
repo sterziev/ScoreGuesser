@@ -59,7 +59,7 @@ public class MatchDisplayContainer {
                     case FINISHED_STATUS: maxFinished = r.getRound()>maxFinished? r.getRound(): maxFinished;
                 }
             }
-            if (minCurrent==0){
+            if (minCurrent==Integer.MAX_VALUE){
                 this.currentRound = maxFinished;
             }
             else {

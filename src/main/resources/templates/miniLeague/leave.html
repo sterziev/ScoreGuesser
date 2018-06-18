@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<th:block th:replace="fragments/navbar"></th:block>
+
+<div class="container">
+    <div class="container col-sm-8 center-block">
+        <!--/*@thymesVar id="league" type="ex.guesser.areas.user.models.dtos.MiniLeagueDto"*/-->
+        <form th:object="${league}" th:action="@{'/miniLeague/leave/' + ${league.getId()}}" th:method="POST">
+            <h5 class="mt-4 mb-4">Are you sure you want to leave mini league: <strong><th:block th:text="${league.leagueName}"></th:block> </strong> </h5>
+
+            <div class="d-flex justify-content-around mb-4">
+                <button type="submit" class="btn btn-danger">Leave</button>
+                <a class="btn btn-primary btn-lg" th:href="@{/}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<th:block th:replace="fragments/footer"></th:block>
+</body>
+</html>

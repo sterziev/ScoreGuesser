@@ -1,10 +1,12 @@
 package ex.guesser.areas.matches.models.binding;
 
 import ex.guesser.areas.matches.entities.Team;
+import ex.guesser.areas.points.entities.Prediction;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class MatchDisplayBindingModel {
 
@@ -21,6 +23,7 @@ public class MatchDisplayBindingModel {
     private Integer goalsAway;
     private Integer FullTimeGoalsHome;
     private Integer FullTimeGoalsAway;
+    private Set<Prediction> predictions;
 
     @Min(value = 0, message = INCORRECT_GOALS_VALUE)
     @Max(value = 20, message = INCORRECT_GOALS_VALUE)
@@ -146,5 +149,13 @@ public class MatchDisplayBindingModel {
 
     public void setFullTimeGoalsAway(Integer fullTimeGoalsAway) {
         FullTimeGoalsAway = fullTimeGoalsAway;
+    }
+
+    public Set<Prediction> getPredictions() {
+        return predictions;
+    }
+
+    public void setPredictions(Set<Prediction> predictions) {
+        this.predictions = predictions;
     }
 }

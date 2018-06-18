@@ -89,6 +89,7 @@
                                 <div class="col text-left zero-padding"
                                      th:text="${match.getGoalsAway() + '-' + match.getGoalsHome()}">-
                                 </div>
+                                <!--swap rezult-->
                             </th:block>
                         </div>
                     </div>
@@ -103,11 +104,13 @@
                         <!--</div>-->
                     </div>
                     <div class="col-3 text">
-                        <div class="row row-height no-margin label-bgr">
-                            <th:block th:if="${match.status.equalsIgnoreCase('finished')}">
+                        <div class="row row-height no-margin label-bgr"
+                             th:classappend="${(match.getPoint()==30 ? 'gold-bgr' :
+                             (match.getPoint()>0 ? 'positive-bgr': 'negative-bgr'))}">
+                            <th:block th:unless="${match.getPoint()==null}">
                                 <div class="col small-text zero-padding">points:</div>
                                 <div class="col text-left zero-padding"
-                                     th:text="${match.getPoint()}">-
+                                     th:text="${match.getPoint()>0? '+' : ''} + ${match.getPoint()}">-
                                 </div>
                             </th:block>
                         </div>

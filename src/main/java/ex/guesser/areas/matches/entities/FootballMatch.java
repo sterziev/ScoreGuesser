@@ -1,7 +1,10 @@
 package ex.guesser.areas.matches.entities;
 
+import ex.guesser.areas.points.entities.Prediction;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import static ex.guesser.areas.common.commonFunctions.Constants.PLANNED_STATUS;
 
@@ -36,6 +39,9 @@ public class FootballMatch {
     private Integer FullTimeGoalsHome;
     @Column
     private Integer FullTimeGoalsAway;
+
+    @OneToMany(mappedBy = "footballMatch")
+    private Set<Prediction> predictions;
 
 
     public FootballMatch() {

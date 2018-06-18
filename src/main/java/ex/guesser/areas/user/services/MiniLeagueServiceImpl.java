@@ -16,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -93,6 +94,33 @@ public class MiniLeagueServiceImpl implements MiniLeagueService {
         return miniLeagueDto;
 
     }
+
+    @Override
+    public MiniLeagueDto findById(String id) {
+        MiniLeague miniLeague = this.miniLeagueRepository.findById(id).orElse(null);
+        if (miniLeague == null){
+            throw new LeagueNotFound();
+        }
+        return this.mapper.map(miniLeague, MiniLeagueDto.class);
+
+    }
+
+    @Override
+    public void leaveMiniLeague(String leagueId, String userId) {
+        MiniLeague league = this.miniLeagueRepository.findById(leagueId).orElse(null);
+        if (league==null){
+            throw new LeagueNotFound();
+        }
+        Set<User> participants = league.getParticipants();
+        league.setParticipants(new HashSet<>());
+        for (User p : participants) {
+            if(!p.getId().equalsIgnoreCase(userId)){
+               league.addParticipant(p);
+            }
+        }
+        this.miniLeagueRepository.save(league);
+    }
+
 
     private String createLegueKey(String leagueName) {
         int randomNum = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);

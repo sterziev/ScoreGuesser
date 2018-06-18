@@ -87,7 +87,7 @@
                 <div class="card-body card-item">
                     <div class="side-bar-singleCol list-group-item" th:text="${currentLeague.keyCode}">Key</div>
                     <br/>
-                    <a class="side-bar-singleCol custom-btn red-btn" href="/miniLeague/leave">Leave Mini League</a>
+                    <a class="side-bar-singleCol custom-btn red-btn" th:href="'/miniLeague/leave/'+ ${currentLeague.id} ">Leave Mini League</a>
                 </div>
             </th:block>
 

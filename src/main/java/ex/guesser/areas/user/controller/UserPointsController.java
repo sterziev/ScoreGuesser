@@ -3,10 +3,12 @@ package ex.guesser.areas.user.controller;
 import ex.guesser.areas.common.controller.BaseController;
 import ex.guesser.areas.matches.models.binding.MatchDisplayContainer;
 import ex.guesser.areas.points.services.PredictionService;
+import ex.guesser.areas.user.entities.User;
 import ex.guesser.areas.user.models.dtos.MiniLeagueDto;
 import ex.guesser.areas.user.models.dtos.UserWithPointsDto;
 import ex.guesser.areas.user.services.MiniLeagueService;
 import ex.guesser.areas.user.services.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,7 +54,11 @@ public class UserPointsController extends BaseController{
     }
 
     @GetMapping("/userInfo/{id}")
-    public ModelAndView index(@PathVariable String id) {
+    public ModelAndView index(@PathVariable String id, Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        if (user.getId().equalsIgnoreCase(id)){
+            return this.redirect("/");
+        }
 
         MatchDisplayContainer matchDisplayContainer = this.predictionService.getFinishedAndClosedPredictions(id);
         return this.view("user/userPointsAndPredictions","matches",matchDisplayContainer, "guestId",id);

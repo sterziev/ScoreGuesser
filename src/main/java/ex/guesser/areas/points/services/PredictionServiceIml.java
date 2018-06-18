@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static ex.guesser.areas.common.commonFunctions.Constants.*;
 
@@ -130,6 +131,15 @@ public class PredictionServiceIml implements PredictionService {
         }
         this.predictionRepository.saveAll(predictionsForMatch);
         return points;
+    }
+
+    @Override
+    public MatchDisplayContainer getAllPredictionsForCloseAndFinishedMatches(Set<User> participants) {
+        List<MatchDisplayBindingModel> closeAndFinishedMatches = this.matchService.getAllMatchesByStatus(CLOSED_STATUS);
+        closeAndFinishedMatches.addAll(this.matchService.getAllMatchesByStatus(FINISHED_STATUS));
+        System.out.println();
+
+        return null;
     }
 
 

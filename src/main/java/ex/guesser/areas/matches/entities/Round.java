@@ -1,6 +1,7 @@
 package ex.guesser.areas.matches.entities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,18 @@ public class Round {
     @Column(nullable = false)
     private String status;
 
+    @Column(name = "finish_round")
+    private LocalDateTime finishRound;
+
     public Round() {
+    }
+
+    public LocalDateTime getFinishRound() {
+        return finishRound;
+    }
+
+    public void setFinishRound(LocalDateTime finishRound) {
+        this.finishRound = finishRound;
     }
 
     public long getId() {

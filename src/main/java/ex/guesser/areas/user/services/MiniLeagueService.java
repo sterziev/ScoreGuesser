@@ -16,4 +16,8 @@ public interface MiniLeagueService {
     MiniLeague join(JoinMiniLeagueBM miniLeagueBM, Authentication authentication);
 
     MiniLeagueDto findById(String id, List<UserWithPointsDto> usersPoints, Principal principal);
+
+    MiniLeagueDto findById(String id);
+
+    void leaveMiniLeague(String leagueId, String userId);
 }
