@@ -52,7 +52,7 @@ public class MatchServiceIml implements MatchService {
         match.setStatus(PLANNED_STATUS);
 
         LocalDateTime localDateTime = LocalDateParser.localDateTimeParser(bindingModel.getYear(),bindingModel.getMonth(),
-                bindingModel.getDay(),bindingModel.getMin(),bindingModel.getMin());
+                bindingModel.getDay(),bindingModel.getHour(),bindingModel.getMin());
         match.setKickOff(localDateTime);
 
         return this.matchRepository.save(match);

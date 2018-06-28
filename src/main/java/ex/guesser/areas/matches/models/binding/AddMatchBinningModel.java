@@ -13,7 +13,7 @@ public class AddMatchBinningModel {
     private static final String YEAR_NOT_EMMPTY_MSG = "Year cannot be empty";;
     private static final String DAY_IN_RANGE_MSG = "The Day can be from 1 to 31";
     private static final String MONTH_IN_RANGE_MSG = "The Month can be from January to December";
-    private static final String YEAR_IN_RANGE_MSG = "The Year can be from 1905 to 2017";
+    private static final String YEAR_IN_RANGE_MSG = "The Year can be from 1905 to 2018";
     private static final String NOT_NULL_MSG_ROUND = "Round cannot be empty";
     private static final String HOUR_NOT_EMMPTY_MSG = "Hours cannot be empty";
     private static final String HOUR_IN_RANGE_MSG = "Hours can be from 1 to 24";
@@ -44,7 +44,7 @@ public class AddMatchBinningModel {
 
     @NotNull(message = YEAR_NOT_EMMPTY_MSG)
     @CustomMinForStr(value = "1905", message = YEAR_IN_RANGE_MSG)
-    @CustomMaxForStr(value = "2017", message = YEAR_IN_RANGE_MSG)
+    @CustomMaxForStr(value = "2018", message = YEAR_IN_RANGE_MSG)
     private String year;
 
     @NotNull(message = HOUR_NOT_EMMPTY_MSG)

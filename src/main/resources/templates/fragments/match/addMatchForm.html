@@ -12,11 +12,13 @@
 
     <div class="row">
 
+
+
         <div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('home')} ? 'has-danger'">
-            <select class="selectpicker" data-live-search="true" id="home" name="home">
-                <th:block th:each="home : ${teams}">
-                    <option th:text="${home.getName()}" th:value="${home.getName()}"
-                            th:selected="${#strings.equals(match.home, #strings.toString(home))}"></option>
+            <select class="form-control" id="away" name="away">
+                <th:block th:each="away : ${teams}">
+                    <option th:text="${away.getName()}" th:value="${away.getName()}"
+                            th:selected="${#strings.equals(match.away, #strings.toString(away))}"></option>
                 </th:block>
             </select>
             <th:block th:if="${#fields.errors('home').size()>0}">
@@ -25,12 +27,14 @@
                 </div>
             </th:block>
         </div>
+
+        <!--swap teams-->
         <label>vs</label>
         <div class="form-group col-sm-4" th:classappend="${#fields.hasErrors('home')} ? 'has-danger'">
-            <select class="selectpicker" data-live-search="true" id="away" name="away">
-                <th:block th:each="away : ${teams}">
-                    <option th:text="${away.getName()}" th:value="${away.getName()}"
-                            th:selected="${#strings.equals(match.away, #strings.toString(away))}"></option>
+            <select class="form-control" id="home" name="home">
+                <th:block th:each="home : ${teams}">
+                    <option th:text="${home.getName()}" th:value="${home.getName()}"
+                            th:selected="${#strings.equals(match.home, #strings.toString(home))}"></option>
                 </th:block>
             </select>
             <th:block th:if="${#fields.errors('home').size()>0}">
